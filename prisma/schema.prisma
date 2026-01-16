@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===================== DESIGN VERSION ===================== 
+model DesignVersion {
+  id             Int       @id @default(autoincrement())
+  versionNumber  Int
+  commitMessage  String?   // Git-like commit message
+  previewUrl     String?   // S3 PNG preview URL
+  createdBy      String    @default("designer") // "designer" or "auto"
+  createdAt      DateTime  @default(now())
+
+  @@unique([versionNumber])
+}
