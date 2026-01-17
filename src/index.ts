@@ -6,16 +6,7 @@ import { config } from './config';
 const app = express();
 
 /* ===== Middlewares ===== */
-app.use(
-  cors({
-    origin: [
-      'https://new.express.adobe.com',
-      'http://localhost:5241', // Adobe local dev
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
+app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Increased limit for PNG base64 uploads
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
